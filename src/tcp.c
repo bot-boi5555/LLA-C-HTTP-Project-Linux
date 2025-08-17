@@ -5,13 +5,13 @@
 server_status_e bind_tcp_port(tcp_server* server, int port) {
 
 	if (server == NULL) {
-		debug_log("tcp_server pointer is null: bind_tcp_port");
+		printf("tcp_server pointer is null: bind_tcp_port\n");
 
 		return SERVER_SOCKET_ERROR;
 	}
 
 	if (port < 0 || port > INT16_MAX) {
-		debug_log("invalid port value");
+		printf("invalid port value\n");
 
 		return SERVER_SOCKET_ERROR;
 	}
