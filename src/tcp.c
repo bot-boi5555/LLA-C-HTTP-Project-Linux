@@ -2,7 +2,7 @@
 #include "main.h"
 #include "common.h"
 
-server_status_e bind_tcp_port(tcp_server* server, int port) {
+server_status_e bind_tcp_port(tcp_server* server) {
 
 	if (server == NULL) {
 		printf("tcp_server pointer is null: bind_tcp_port\n");
