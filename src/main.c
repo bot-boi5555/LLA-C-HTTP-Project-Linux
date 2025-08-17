@@ -1,11 +1,15 @@
 #include "main.h"
 #include "tcp.h"
 #include "common.h"
+#include "http.h"
 
 int main() {
 
 	tcp_server server = {0};
 	int client_fd = -1;
+
+	http_request request = {0};
+	char* raw_request = NULL;
 
 	if (bind_tcp_port(&server, PORT) != SERVER_OK) {
 		debug_log("Server initialization failed");
@@ -24,7 +28,18 @@ int main() {
 		exit(EXIT_FAILURE);
 	}
 
-	debug_log("Client connected!!");
+	debug_log("Client connected!!\n");
+
+	if (read_raw_request(client_fd, &raw_request) == RECV_ERROR) {
+		debug_log("Failed to read http request");
+
+		close(server.socket_fd);
+		close(client_fd);
+
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%s\n", raw_request);
 
 
 	close(client_fd);

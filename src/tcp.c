@@ -4,6 +4,8 @@
 
 server_status_e bind_tcp_port(tcp_server* server, int port) {
 
+	int sockopt = 1;
+
 	if (server == NULL) {
 		printf("tcp_server pointer is null: bind_tcp_port\n");
 
@@ -30,6 +32,13 @@ server_status_e bind_tcp_port(tcp_server* server, int port) {
 		return SERVER_SOCKET_ERROR;
 	}
 
+	if (setsockopt(server->socket_fd, SOL_SOCKET, SO_REUSEADDR, &sockopt, sizeof(sockopt)) == SOCKET_ERROR) {
+		perror("setsockopt");
+		close(server->socket_fd);
+
+		return SERVER_SOCKET_ERROR;
+	}
+
 	if (bind(server->socket_fd, (struct sockaddr*) &server->address, sizeof(server->address)) == SOCKET_ERROR) {
 		perror("bind");
 		close(server->socket_fd);
@@ -45,7 +54,7 @@ server_status_e bind_tcp_port(tcp_server* server, int port) {
 	}
 
 
-	
+
 	return SERVER_OK;
 }
 
