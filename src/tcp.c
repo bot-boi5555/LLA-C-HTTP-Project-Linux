@@ -45,6 +45,7 @@ server_status_e bind_tcp_port(tcp_server* server, int port) {
 	}
 
 
+	
 	return SERVER_OK;
 }
 
