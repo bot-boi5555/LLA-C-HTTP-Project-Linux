@@ -30,7 +30,7 @@ struct tcp_server_t {
 typedef enum server_status_e server_status_e;
 typedef struct tcp_server_t tcp_server;
 
-server_status_e bind_tcp_port(tcp_server* server, int port);
+server_status_e bind_tcp_port(tcp_server* server);
 int accept_client(int server_fd);
 
 #endif
