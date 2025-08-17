@@ -2,10 +2,18 @@
 #include "main.h"
 #include "common.h"
 
-server_status_e bind_tcp_port(tcp_server* server, unsigned short port) {
+server_status_e bind_tcp_port(tcp_server* server, int port) {
 
 	if (server == NULL) {
 		debug_log("tcp_server pointer is null: bind_tcp_port");
+
+		return SERVER_SOCKET_ERROR;
+	}
+
+	if (port < 0 || port > INT16_MAX) {
+		debug_log("invalid port value");
+
+		return SERVER_SOCKET_ERROR;
 	}
 
 	memset(server, 0, sizeof(tcp_server));
