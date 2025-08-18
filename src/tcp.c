@@ -39,7 +39,7 @@ server_status_e bind_tcp_port(tcp_server* server, int port) {
 		return SERVER_SOCKET_ERROR;
 	}
 
-	if (bind(server->socket_fd, (struct sockaddr*) &server->address, sizeof(server->address)) <= SOCKET_ERROR) {
+	if (bind(server->socket_fd, (struct sockaddr*) &server->address, sizeof(server->address)) == SOCKET_ERROR) {
 		perror("bind");
 		close(server->socket_fd);
 
