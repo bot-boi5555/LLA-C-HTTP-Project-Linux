@@ -22,7 +22,7 @@ server_status_e bind_tcp_port(tcp_server* server, int port) {
 
 	server->address.sin_family = AF_INET;
 	server->address.sin_addr.s_addr = INADDR_ANY;
-	server->address.sin_port = htons(port);
+	server->address.sin_port = (port);
 
 	server->socket_fd = socket(AF_INET, SOCK_STREAM, 0);
 
