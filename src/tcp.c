@@ -43,7 +43,7 @@ server_status_e bind_tcp_port(tcp_server* server, int port) {
 		perror("bind");
 		close(server->socket_fd);
 
-		return 1;
+		return SERVER_BIND_ERROR;
 	}
 
 	if (listen(server->socket_fd, BACKLOG) == SOCKET_ERROR) {
