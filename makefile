@@ -10,10 +10,10 @@ default: $(TARGET)
 
 
 $(TARGET): $(OBJ)
-	gcc $^ -o $@
+	gcc $^ -o $@ 
 
 $(OBJ): obj/%.o: src/%.c
-	gcc -c $< -o $@ -Iinclude
+	gcc -c $< -o $@ -Iinclude -g
 
 clean:
 	rm -f obj/*.o

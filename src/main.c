@@ -29,7 +29,7 @@ int main() {
 	}
 
 	debug_log("Client connected!!\n");
-
+	
 	if (read_raw_request(client_fd, &raw_request) == RECV_ERROR) {
 		debug_log("Failed to read http request");
 
@@ -39,8 +39,29 @@ int main() {
 		exit(EXIT_FAILURE);
 	}
 
-	printf("%s\n", raw_request);
 
+
+	printf("%s", raw_request);
+	
+	
+	if (parse_http_request(raw_request, &request) != HTTP_OK) {
+		debug_log("Failed to parse http request");
+
+		close(server.socket_fd);
+		close(client_fd);
+
+		exit(EXIT_FAILURE);
+	}
+	
+
+	printf("%s, %s, %s\n", request.method, request.path, request.version);
+	printf("------------------------\n%s\n-----------------------", request.headers);
+	printf("%s\n", request.body);
+
+	
+
+	free(raw_request);
+	raw_request == NULL;
 
 	close(client_fd);
 	close(server.socket_fd);

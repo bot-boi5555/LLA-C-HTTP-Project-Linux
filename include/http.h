@@ -4,13 +4,14 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <sys/socket.h>
 
 #define HTTP_REQUEST_MAX_LEN 			INT16_MAX
 
 #define HTTP_METHOD_MAX_LEN 			16
-#define HTTP_PATH_MAX_LEN 				512
+#define HTTP_PATH_MAX_LEN 				256
 #define HTTP_VERSION_MAX_LEN 			16
 #define HTTP_HEADER_MAX_LEN 			1024
 #define HTTP_BODY_MAX_LEN 				4096
